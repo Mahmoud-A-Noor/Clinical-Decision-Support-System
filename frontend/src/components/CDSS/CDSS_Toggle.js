@@ -1,6 +1,11 @@
 import React from 'react';
+import { useContext } from "react";
+import { ToggleContext } from "./CDSS";
 
-export default function CDSS_Toggle({ setActiveButton, setRecommendations, setSelectedSymptoms, activeButton, clear }) {
+export default function CDSS_Toggle({ clear }) {
+
+    const {activeButton, setActiveButton} = useContext(ToggleContext);
+
     function toggle() {    
         if (activeButton === "search") {
           setActiveButton("select");

@@ -1,11 +1,13 @@
 import React from "react";
-import { useState } from "react";
-
+import { useState, createContext } from "react";
 import CDSS_Select from "./CDSS_Select";
 import CDSS_Search from "./CDSS_Search";
-
 import axios from "axios";
 import CDSS_Prediction from "./CDSS_Prediction";
+
+
+
+export const ToggleContext = createContext();
 
 export default function CDSS() {
   const [symptoms, setSymptoms] = useState({
@@ -149,26 +151,32 @@ export default function CDSS() {
   const [recommendations, setRecommendations] = useState([]);
 
   const [selected_symptoms, setSelectedSymptoms] = useState([]);
+
+
+
   
   function CDSS() {
     axios.post("/api/CDSS", symptoms).then((response) => {
       setPrediction(response.data["prognosis"]);
     });
   }
-
-
-
   
 
   if (prediction){
     return <CDSS_Prediction symptoms={symptoms} setSymptoms={setSymptoms} prediction={prediction}
             setPrediction={setPrediction} setRecommendations={setRecommendations} setSelectedSymptoms={setSelectedSymptoms} />
   }else if (activeButton === "search") {
-    return <CDSS_Search CDSS={CDSS} symptoms={symptoms} setSymptoms={setSymptoms} 
-            activeButton={activeButton} setActiveButton={setActiveButton} 
-            recommendations={recommendations} setRecommendations={setRecommendations} 
-            selected_symptoms={selected_symptoms} setSelectedSymptoms={setSelectedSymptoms} />
+    return <ToggleContext.Provider value={{activeButton: activeButton, setActiveButton: setActiveButton}}>
+
+              <CDSS_Search CDSS={CDSS} symptoms={symptoms} setSymptoms={setSymptoms} 
+                    recommendations={recommendations} setRecommendations={setRecommendations} 
+                    selected_symptoms={selected_symptoms} setSelectedSymptoms={setSelectedSymptoms} />  
+                    
+          </ToggleContext.Provider>
+    
   }else{
-    return <CDSS_Select CDSS={CDSS} symptoms={symptoms} setSymptoms={setSymptoms} activeButton={activeButton} setActiveButton={setActiveButton} />
+    return <ToggleContext.Provider value={{activeButton: activeButton, setActiveButton: setActiveButton}}>
+              <CDSS_Select CDSS={CDSS} symptoms={symptoms} setSymptoms={setSymptoms} />
+          </ToggleContext.Provider>
   }
 }

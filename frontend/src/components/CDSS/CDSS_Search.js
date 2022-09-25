@@ -1,5 +1,4 @@
 import React from 'react';
-import { useState } from "react";
 import {
     FormGroup,
     Button,
@@ -7,7 +6,7 @@ import {
 import CDSS_Toggle from './CDSS_Toggle';
 
 
-export default function CDSS_Search({CDSS, symptoms, setSymptoms, activeButton, setActiveButton, selected_symptoms, setSelectedSymptoms, recommendations, setRecommendations}) {
+export default function CDSS_Search({CDSS, symptoms, setSymptoms, selected_symptoms, setSelectedSymptoms, recommendations, setRecommendations}) {
     
 
   let search_old_value = "";
@@ -118,7 +117,7 @@ export default function CDSS_Search({CDSS, symptoms, setSymptoms, activeButton, 
     <div>
         <div id="symptom-page-header">
           <h1 className="mx-auto">Search For Symptoms</h1>
-          <CDSS_Toggle activeButton={activeButton} setActiveButton={setActiveButton} clear={()=>{
+          <CDSS_Toggle clear={()=>{
             setRecommendations([]);
             setSelectedSymptoms([]);
           }} />

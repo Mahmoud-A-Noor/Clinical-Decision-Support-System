@@ -10,7 +10,7 @@ import { pink } from "@mui/material/colors";
 import CDSS_Toggle from './CDSS_Toggle';
 
 
-export default function CDSS_Select({CDSS, symptoms, setSymptoms, activeButton, setActiveButton}) {
+export default function CDSS_Select({CDSS, symptoms, setSymptoms}) {
 
     function handleCheckboxChange(event) {
         setSymptoms({
@@ -48,7 +48,7 @@ export default function CDSS_Select({CDSS, symptoms, setSymptoms, activeButton, 
     <div>
       <div id="symptom-page-header">
         <h1 className="mx-auto">Select Your Symptoms</h1>
-        <CDSS_Toggle activeButton={activeButton} setActiveButton={setActiveButton} clear={()=>{}} />
+        <CDSS_Toggle clear={()=>{}} />
       </div>
       <FormGroup>
         <Grid
