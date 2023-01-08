@@ -1,5 +1,5 @@
 """
-WSGI config for Medical_Mega_Project project.
+WSGI config for Clinical_Decision_Support_System project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Medical_Mega_Project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Clinical_Decision_Support_System.settings')
 
 application = get_wsgi_application()
